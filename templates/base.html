@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>rehber</title>
+
+    <!-- Google Font: Source Sans Pro -->
+    <link rel="stylesheet"
+          href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+    <!-- Font Awesome -->
+    <link rel="stylesheet" href={% static "fontawesome-free/css/all.min.css" %}>
+    <!-- Theme style -->
+    <link rel="stylesheet" href={% static "dist/css/adminlte.min.css" %}>
+    <!-- overlayScrollbars -->
+    <link rel="stylesheet" href={% static "overlayScrollbars/css/OverlayScrollbars.min.css" %}>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed" data-panel-auto-height-mode="height">
+
+{% include "partials/_navbar.html" %}
+    <aside class="main-sidebar sidebar-dark-primary elevation-4">
+  {% include "partials/_sidebar.html" %}
+  </aside>
+{% block content %}
+
+{% endblock %}
+<script src={% static "jquery/jquery.min.js" %}></script>
+<!-- jQuery UI 1.11.4 -->
+<script src={% static "jquery-ui/jquery-ui.min.js" %}></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+    $.widget.bridge('uibutton', $.ui.button)
+</script>
+<!-- Bootstrap 4 -->
+<script src={% static "bootstrap/js/bootstrap.bundle.min.js" %}></script>
+<!-- overlayScrollbars -->
+<!-- AdminLTE App -->
+<script src={% static "dist/js/adminlte.js" %}></script>
+<!-- AdminLTE for demo purposes -->
+<script src= {% static "dist/js/demo.js" %}></script>
+
+
+{% block script %}
+{% endblock %}
+
+</body>
+</html>
