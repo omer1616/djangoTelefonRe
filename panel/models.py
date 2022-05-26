@@ -22,5 +22,10 @@ class Person(models.Model):
         return reverse('list-details', kwargs={'id': self.id})
 
 
+    def get_absolute_list(self):
+        from django.urls import reverse
+        return reverse('list')
+
+
 class Company(models.Model):
     name = models.CharField(max_length=150)

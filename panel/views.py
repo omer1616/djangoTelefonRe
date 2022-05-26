@@ -1,9 +1,10 @@
 from django.shortcuts import render, get_object_or_404, redirect
-from django.http import HttpResponseRedirect ,JsonResponse
+from django.http import HttpResponseRedirect, JsonResponse
 from panel.models import Person, Company
 from panel.forms import ContactPerson
-from django.contrib import  messages
+from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
+
 
 # Create your views here.
 
@@ -47,17 +48,19 @@ def update(request, id):
     form = ContactPerson(request.POST or None, instance=person)
     if form.is_valid():
         form.save()
-        messages.success(request,  "ilk mesajınız olusturuldu")
+        messages.success(request, "ilk mesajınız olusturuldu")
         return HttpResponseRedirect(person.get_absolute_url())
     context = {
-        'person':  person,
+        'person': person,
 
     }
 
     return render(request, "update.html", context)
+
 
 @csrf_exempt
 def delete(request, id):
     person = Person.objects.get(id=id)
     person.delete()
     return JsonResponse({'success': True})
+
