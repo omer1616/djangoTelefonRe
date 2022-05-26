@@ -24,8 +24,24 @@ def list(request):
     context = {
         "persons": Person.objects.all()
     }
-
+    person_list = Person.objects.all()
+    query = request.GET.get('q')
+    if query:
+        person_list = person_list.filter(title__icontains=query)
     return render(request, "list.html", context)
+
+
+from django.db.models import Q
+
+
+def search(request):
+    if request.method == "POST":
+        searched = request.POST['searched']
+        persons = Person.objects.filter(
+            Q(company__contains=searched) | Q(name__contains=searched) | Q(phone_number__contains=searched))
+
+        return render(request, "search_menu.html", {'searched': searched,
+                                                    'persons': persons})
 
 
 def list_details(request, id):
@@ -63,4 +79,3 @@ def delete(request, id):
     person = Person.objects.get(id=id)
     person.delete()
     return JsonResponse({'success': True})
-

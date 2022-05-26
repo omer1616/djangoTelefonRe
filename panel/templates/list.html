@@ -107,8 +107,6 @@
         <script>
 
             function delete_person(person_id) {
-
-
                 Swal.fire({
                     title: 'Uyarı!',
                     text:  person_id[name] + " kişisini silmek istediğinizden emin misiniz?",
@@ -120,7 +118,6 @@
                     cancelButtonText: 'Geri',
                 }).then((result) => {
                     if (result.value) {
-
                         $.ajax({
                             method: "GET",
                             url: `list/${person_id}/delete`,
@@ -138,13 +135,8 @@
                                     alert("hata")
                                 }
                             });
-
-
-
                     }
                 })
-
-
             }
 
         </script>

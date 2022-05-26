@@ -4,6 +4,7 @@ from django.db import models
 from django.db import models
 from django.urls import reverse
 
+
 # Create your models here.
 
 
@@ -20,7 +21,6 @@ class Person(models.Model):
     def get_absolute_url(self):
         from django.urls import reverse
         return reverse('list-details', kwargs={'id': self.id})
-
 
     def get_absolute_list(self):
         from django.urls import reverse

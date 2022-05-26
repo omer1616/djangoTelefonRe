@@ -1,0 +1,103 @@
+{% extends "base.html" %}
+
+
+
+{% block content %}
+
+    <div class="content-wrapper">
+
+
+        <!-- Main content -->
+        <section class="content">
+
+            <!-- Default box -->
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Rehber Listesi</h3>
+
+                    <div class="card-tools">
+                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                            <i class="fas fa-minus"></i>
+                        </button>
+                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                            <i class="fas fa-times"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="card-body p-0">
+                    <table class="table table-striped projects">
+                        <thead>
+                        <tr>
+                            <th style="width: 1%">
+                                Id
+                            </th>
+                            <th style="width: 20%">
+                                İsim Soyisim
+                            </th>
+                            <th style="width: 30%">
+                                Telefon Numarası
+                            </th>
+                            <th>
+                                Açıklama
+                            </th>
+                            <th style="width: 8%" class="text-center">
+                                Şirket
+                            </th>
+                            <th style="width: 20%">
+                            </th>
+                        </tr>
+                        </thead>
+
+                        {% if searched %}
+                            {% for person in persons %}
+                                <tbody>
+                                <tr>
+                                    <td>
+                                        {{ person.id }}
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ person.name }}
+                                        </a>
+                                        <br/>
+
+                                    </td>
+                                    <td>
+                                        <h5>{{ person.phone_number }}</h5>
+                                    </td>
+                                    <td class="project_progress">
+                                        {{ person.description }}
+                                    </td>
+                                    <td class="project-state">
+                                        <span class="badge badge-success">{{ person.company }}</span>
+                                    </td>
+
+                                </tr>
+
+                                </tbody>
+                            {% endfor %}
+
+                        {% endif %}
+
+                    </table>
+                </div>
+                <!-- /.card-body -->
+            </div>
+            <!-- /.card -->
+
+        </section>
+        <!-- /.content -->
+    </div>
+
+{% endblock %}
+{#  {% if searched %}#}
+{#            {% for person in persons %}#}
+{##}
+{#                 #}
+{##}
+{##}
+{#            {% endfor %}#}
+{##}
+{##}
+{##}
+{#        {% endif %}#}
