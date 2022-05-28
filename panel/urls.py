@@ -10,5 +10,7 @@ urlpatterns = [
     path('list/<int:id>/update', views.update, name='update'),
     path('list/<int:id>/delete', views.delete, name='delete'),
     path('search', views.search, name='search'),
+    path('incoming-call',  views.incoming_call,  name="incoming-call"),
+    path('outer-call',  views.outer_call,  name="outer-call"),
 
 ]

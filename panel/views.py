@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
-from panel.models import Person, Company
-from panel.forms import ContactPerson
+from panel.models import Person, Company, PersonCall
+from panel.forms import ContactPerson, ContactPersonCall
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -31,10 +31,8 @@ def list(request):
     return render(request, "list.html", context)
 
 
-from django.db.models import Q
-
-
 def search(request):
+    from django.db.models import Q
     if request.method == "POST":
         searched = request.POST['searched']
         persons = Person.objects.filter(
@@ -79,3 +77,21 @@ def delete(request, id):
     person = Person.objects.get(id=id)
     person.delete()
     return JsonResponse({'success': True})
+
+from django.urls import reverse
+@csrf_exempt
+def incoming_call(request):
+    form = ContactPersonCall(request.POST or None)
+    if request.method == "POST":
+        print("girdi")
+        if form.is_valid():
+            person = form.save()
+            return HttpResponseRedirect(reverse('incoming-call'))
+    context = {
+        'form': form,
+    }
+    return render(request, "incoming_call.html", context)
+
+
+def outer_call(request):
+    return render(request, "outer-call.html")

@@ -2,6 +2,7 @@ from django.db import models
 
 # Create your models here.
 from django.db import models
+
 from django.urls import reverse
 
 
@@ -22,10 +23,28 @@ class Person(models.Model):
         from django.urls import reverse
         return reverse('list-details', kwargs={'id': self.id})
 
-    def get_absolute_list(self):
-        from django.urls import reverse
-        return reverse('list')
+    # def get_absolute_list(self):
+    #     from django.urls import reverse
+    #     return reverse('list')
 
 
 class Company(models.Model):
     name = models.CharField(max_length=150)
+
+
+class PersonCall(models.Model):
+
+    name = models.CharField(max_length=200)
+    description = models.TextField(max_length=300)
+    CALL_TYPE = [
+        ("gelen", "gelen"),
+        ("giden", "giden"),
+    ]
+
+    choices_call_type = models.CharField(
+        max_length=5,
+        choices=CALL_TYPE,
+
+    )
+
+
