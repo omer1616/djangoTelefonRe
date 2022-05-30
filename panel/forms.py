@@ -1,5 +1,20 @@
 from django.forms import ModelForm, TextInput, ModelChoiceField
-from panel.models import Person, PersonCall
+from panel.models import Person, PersonCall, Company
+
+
+class ContactCompany(ModelForm):
+    class Meta:
+        model = Company
+        fields = ["name", "company_description"]
+        widgets = {
+            "name": TextInput(attrs={
+                'class': 'input',
+            }),
+            "company_description": TextInput(attrs={
+                'class': 'input',
+            }),
+
+        }
 
 
 class ContactPerson(ModelForm):
@@ -25,7 +40,7 @@ class ContactPerson(ModelForm):
 class ContactPersonCall(ModelForm):
     class Meta:
         model = PersonCall
-        fields = ["name",  "description", "choices_call_type"]
+        fields = ["name", "description", "choices_call_type"]
         widgets = {
             "description": TextInput(attrs={
                 'class': 'input',

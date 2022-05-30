@@ -12,5 +12,8 @@ urlpatterns = [
     path('search', views.search, name='search'),
     path('incoming-call',  views.incoming_call,  name="incoming-call"),
     path('outer-call',  views.outer_call,  name="outer-call"),
+    path('add-company',  views.add_company,  name="add-company"),
+
+
 
 ]

@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from panel.models import Person, Company, PersonCall
-from panel.forms import ContactPerson, ContactPersonCall
+from panel.forms import ContactPerson, ContactPersonCall,  ContactCompany
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -86,7 +86,6 @@ from django.urls import reverse
 def incoming_call(request):
     form = ContactPersonCall(request.POST or None)
     if request.method == "POST":
-        print("girdi")
         if form.is_valid():
             form.save()
             return HttpResponseRedirect(reverse('incoming-call'))
@@ -101,3 +100,20 @@ def outer_call(request):
         "story_list": PersonCall.objects.all()
     }
     return render(request, "outer-call.html", context)
+
+
+def add_company(request):
+    company = ContactCompany(request.POST or None)
+    if company.is_valid():
+        company.save()
+
+    context = {
+        'company': company,
+    }
+    return render(request, "add_company.html", context)
+
+
+def list_company(request):
+    return render(request, "list_company.html")
+
+

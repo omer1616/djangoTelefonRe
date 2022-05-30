@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+{% block content %}
+{% load crispy_forms_tags %}
+
+    <body>
+    <div class="content-wrapper">
+        <section class="content">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Arama Kaydı Ekleme</h3>
+                            </div>
+
+                            <form method="POST"  class="uniForm">
+                                {% csrf_token %}
+                                <div class="card-body">
+
+                                    <div class="form-group">
+                                   {{ company|crispy }}
+                                    </div>
+                                     <button type="submit" id="basicAlert" class="btn btn-primary">Ekle</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+    </div>
+    {% block script %}
+        <script>
+            const message = document.getElementById('basicAlert');
+            message.addEventListener('click', messageAlert)
+
+            function messageAlert() {
+                Swal.fire({
+                    position: 'center',
+                    icon: 'success',
+                    title: 'Başarılı',
+                    showConfirmButton: false,
+                    timer: 1500
+                })
+            }
+        </script>
+
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+    {% endblock %}
+    </body>
+
+{% endblock %}
