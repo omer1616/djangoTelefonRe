@@ -24,10 +24,10 @@ def list(request):
     context = {
         "persons": Person.objects.all()
     }
-    person_list = Person.objects.all()
-    query = request.GET.get('q')
-    if query:
-        person_list = person_list.filter(title__icontains=query)
+    # person_list = Person.objects.all()
+    # query = request.GET.get('q')
+    # if query:
+    #     person_list = person_list.filter(title__icontains=query)
     return render(request, "list.html", context)
 
 
@@ -78,14 +78,17 @@ def delete(request, id):
     person.delete()
     return JsonResponse({'success': True})
 
+
 from django.urls import reverse
+
+
 @csrf_exempt
 def incoming_call(request):
     form = ContactPersonCall(request.POST or None)
     if request.method == "POST":
         print("girdi")
         if form.is_valid():
-            person = form.save()
+            form.save()
             return HttpResponseRedirect(reverse('incoming-call'))
     context = {
         'form': form,
@@ -94,4 +97,7 @@ def incoming_call(request):
 
 
 def outer_call(request):
-    return render(request, "outer-call.html")
+    context = {
+        "story_list": PersonCall.objects.all()
+    }
+    return render(request, "outer-call.html", context)

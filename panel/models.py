@@ -23,19 +23,15 @@ class Person(models.Model):
         from django.urls import reverse
         return reverse('list-details', kwargs={'id': self.id})
 
-    # def get_absolute_list(self):
-    #     from django.urls import reverse
-    #     return reverse('list')
-
 
 class Company(models.Model):
     name = models.CharField(max_length=150)
 
 
 class PersonCall(models.Model):
+    name = models.ForeignKey(Person, on_delete=models.CASCADE, verbose_name="İsim Soyisim")
+    description = models.TextField(max_length=500, verbose_name="Açıklma")
 
-    name = models.CharField(max_length=200)
-    description = models.TextField(max_length=300)
     CALL_TYPE = [
         ("gelen", "gelen"),
         ("giden", "giden"),
@@ -44,7 +40,6 @@ class PersonCall(models.Model):
     choices_call_type = models.CharField(
         max_length=5,
         choices=CALL_TYPE,
+        verbose_name="Arama Türü"
 
     )
-
-

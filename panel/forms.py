@@ -27,15 +27,8 @@ class ContactPersonCall(ModelForm):
         model = PersonCall
         fields = ["name",  "description", "choices_call_type"]
         widgets = {
-            "name": TextInput(attrs={
-                'class': 'input',
-            }),
             "description": TextInput(attrs={
                 'class': 'input',
             }),
-
-
-
-
 
         }
