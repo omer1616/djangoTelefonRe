@@ -114,6 +114,14 @@ def add_company(request):
 
 
 def list_company(request):
-    return render(request, "list_company.html")
+    companys =  Company.objects.all()
+    context = {
+        "companys": companys
+    }
+    return render(request, "list_company.html", context)
+
+
+def  company_details(request):
+    pass
 
 

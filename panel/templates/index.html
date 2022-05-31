@@ -1,6 +1,7 @@
 {% extends "base.html" %}
 {% load static %}
 {% block content %}
+{% load crispy_forms_tags %}
 
     <body>
     <div class="content-wrapper">
@@ -15,23 +16,9 @@
                             <form method="POST">
                                 {% csrf_token %}
                                 <div class="card-body">
+                               {{ form|crispy }}
                                     <div class="form-group">
-                                        <label for="exampleInputEmail1">İsim Soyisim</label>
-                                        <input type="text" class="form-control" name="name" placeholder="İsim Soyisim">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Açıklama</label>
-                                        <input type="text" class="form-control" name="description"
-                                               placeholder="Açıklama">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputPassword1">Numara</label>
-                                        <input type="text   " class="form-control" name="phone_number"
-                                               placeholder="numara">
-                                    </div>
-                                    <div class="form-group">
-                                        <label for="exampleInputEmail1">Şirket</label>
-                                        <input type="text" class="form-control" name="company" placeholder="Şirket">
+
                                     </div>
 
                                 </div>

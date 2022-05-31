@@ -1,93 +1,93 @@
-{% extends "base.html" %}
-{% load static %}
+    {% extends "base.html" %}
+    {% load static %}
 
-{% block content %}
+    {% block content %}
 
-           <body>
-    <div class="content-wrapper">
+               <body>
+        <div class="content-wrapper">
 
 
-        <!-- Main content -->
-        <section class="content">
+            <!-- Main content -->
+            <section class="content">
 
-            <!-- Default box -->
-            <div class="card">
-                <div class="card-header">
-                    <h3 class="card-title">Rehber Listesi</h3>
+                <!-- Default box -->
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title">Rehber Listesi</h3>
 
-                    <div class="card-tools">
-                        <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
-                            <i class="fas fa-minus"></i>
-                        </button>
-                        <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
-                            <i class="fas fa-times"></i>
-                        </button>
+                        <div class="card-tools">
+                            <button type="button" class="btn btn-tool" data-card-widget="collapse" title="Collapse">
+                                <i class="fas fa-minus"></i>
+                            </button>
+                            <button type="button" class="btn btn-tool" data-card-widget="remove" title="Remove">
+                                <i class="fas fa-times"></i>
+                            </button>
+                        </div>
                     </div>
+                    <div class="card-body p-0">
+                        <table class="table table-striped projects">
+                            <thead>
+                            <tr>
+                                <th style="width: 1%">
+                                    Id
+                                </th>
+                                <th style="width: 20%">
+                                    İsim Soyisim
+                                </th>
+                                <th style="width: 30%">
+                                    Telefon Numarası
+                                </th>
+                                <th>
+                                    Açıklama
+                                </th>
+                                <th style="width: 8%" class="text-center">
+                                    Şirket
+                                </th>
+                                <th style="width: 20%">
+                                </th>
+                            </tr>
+                            </thead>
+
+
+                            {% for list in story_list %}
+                                <tbody>
+                                <tr id="personRow_{{ list.id }}">
+                                    <td>
+                                        {{ list.id }}
+                                    </td>
+                                    <td>
+                                        <a>
+                                            {{ list.name }}
+                                        </a>
+                                        <br/>
+
+                                    </td>
+                                    <td>
+                                        <h5>{{ list.description}}</h5>
+                                    </td>
+                                    <td class="project_progress">
+                                        {{ list.choices_call_type }}
+                                    </td>
+
+                                    <td class="project-state">
+                              <span class="badge badge-success">amadfkdml</span>
+                                    </td>
+
+
+                                </tbody>
+                            {% endfor %}
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
                 </div>
-                <div class="card-body p-0">
-                    <table class="table table-striped projects">
-                        <thead>
-                        <tr>
-                            <th style="width: 1%">
-                                Id
-                            </th>
-                            <th style="width: 20%">
-                                İsim Soyisim
-                            </th>
-                            <th style="width: 30%">
-                                Telefon Numarası
-                            </th>
-                            <th>
-                                Açıklama
-                            </th>
-                            <th style="width: 8%" class="text-center">
-                                Şirket
-                            </th>
-                            <th style="width: 20%">
-                            </th>
-                        </tr>
-                        </thead>
+                <!-- /.card -->
 
+            </section>
 
-                        {% for list in story_list %}
-                            <tbody>
-                            <tr id="personRow_{{ list.id }}">
-                                <td>
-                                    {{ list.id }}
-                                </td>
-                                <td>
-                                    <a>
-                                        {{ list.name }}
-                                    </a>
-                                    <br/>
-
-                                </td>
-                                <td>
-                                    <h5>{{ list.description}}</h5>
-                                </td>
-                                <td class="project_progress">
-                                    {{ list.choices_call_type }}
-                                </td>
-
-                                <td class="project-state">
-                          <span class="badge badge-success">amadfkdml</span>
-                                </td>
-
-
-                            </tbody>
-                        {% endfor %}
-                    </table>
-                </div>
-                <!-- /.card-body -->
-            </div>
-            <!-- /.card -->
-
-        </section>
-
-        <!-- /.content -->
-    </div>
-    </body>
+            <!-- /.content -->
+        </div>
+        </body>
 
 
 
-{% endblock %}
+    {% endblock %}

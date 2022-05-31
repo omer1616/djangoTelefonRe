@@ -15,10 +15,11 @@ class Company(models.Model):
 
 
 class Person(models.Model):
-    name = models.CharField(max_length=150)
-    phone_number = models.CharField(max_length=50)
-    description = models.TextField()
-    company = models.CharField(max_length=100)
+
+    name = models.CharField(max_length=150, verbose_name="İsim Soyisim")
+    phone_number = models.CharField(max_length=50, verbose_name="Telefon Numarası")
+    description = models.TextField(verbose_name="Açıklama")
+    company = models.ForeignKey(Company, on_delete=models.CASCADE, verbose_name="Firma")
     is_active = models.BooleanField(default=True)
 
     def __str__(self):
@@ -37,7 +38,6 @@ class PersonCall(models.Model):
         ("gelen", "gelen"),
         ("giden", "giden"),
     ]
-
     choices_call_type = models.CharField(
         max_length=5,
         choices=CALL_TYPE,
