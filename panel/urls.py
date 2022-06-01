@@ -13,7 +13,8 @@ urlpatterns = [
     path('incoming-call',  views.incoming_call,  name="incoming-call"),
     path('outer-call',  views.outer_call,  name="outer-call"),
     path('add-company',  views.add_company,  name="add-company"),
-    path('list-company',  views.list_company, name= "list-company")
+    path('list-company',  views.list_company, name= "list-company"),
+    path('list-company/<int:id>',  views.company_details, name= 'company-details')
 
 
 

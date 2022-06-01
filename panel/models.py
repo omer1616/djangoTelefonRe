@@ -13,6 +13,10 @@ class Company(models.Model):
     def __str__(self):
         return f"{self.name}"
 
+    def get_absolute_url(self):
+        from django.urls import reverse
+        return reverse('company-details', kwargs={'id': self.id})
+
 
 class Person(models.Model):
 

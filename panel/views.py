@@ -1,7 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponseRedirect, JsonResponse
 from panel.models import Person, Company, PersonCall
-from panel.forms import ContactPerson, ContactPersonCall,  ContactCompany
+from panel.forms import ContactPerson, ContactPersonCall, ContactCompany
 from django.contrib import messages
 from django.views.decorators.csrf import csrf_exempt
 
@@ -44,6 +44,7 @@ def search(request):
 
 def list_details(request, id):
     person = get_object_or_404(Person, id=id)
+
     return render(request, "list-details.html", {
         "person": person
     })
@@ -105,7 +106,9 @@ def outer_call(request):
 def add_company(request):
     company = ContactCompany(request.POST or None)
     if company.is_valid():
-        company.save()
+        comp=company.save()
+        return HttpResponseRedirect(comp.get_absolute_url())
+
 
     context = {
         'company': company,
@@ -114,14 +117,17 @@ def add_company(request):
 
 
 def list_company(request):
-    companys =  Company.objects.all()
+    companys = Company.objects.all()
     context = {
         "companys": companys
     }
+
     return render(request, "list_company.html", context)
 
 
-def  company_details(request):
-    pass
+def company_details(request, id):
+    company = get_object_or_404(Company, id=id)
 
-
+    return render(request, "company-detail.html", {
+        "company": company
+    })
